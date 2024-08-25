@@ -1,0 +1,52 @@
+wandb_version: 1
+
+general:
+  desc: null
+  value:
+    seed: 1971
+    project_name: signate-cup-2024
+pipeline:
+  desc: null
+  value:
+    feat_engineering:
+      use_target_encoding: true
+      use_pca: false
+      use_tsne: false
+      use_umap: false
+      use_kmeans: false
+    train:
+      cross_validation: true
+      n_splits: 5
+      cv_type: startifiedCV
+_wandb:
+  desc: null
+  value:
+    python_version: 3.6.9
+    cli_version: 0.15.11
+    framework: xgboost
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1723406704.794281
+    t:
+      1:
+      - 5
+      - 6
+      - 35
+      - 53
+      - 55
+      2:
+      - 5
+      - 6
+      - 35
+      - 53
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      - 24
+      4: 3.6.9
+      5: 0.15.11
+      8:
+      - 5
+      13: linux-x86_64

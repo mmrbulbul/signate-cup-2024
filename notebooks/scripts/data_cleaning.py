@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-column_names = ['id', 'age', 'typeof_contact', 'city_tier', 'duration_of_pitch', 'occupation', 'gender', 
+column_names = ['age', 'typeof_contact', 'city_tier', 'duration_of_pitch', 'occupation', 'gender', 
  'number_of_person_visiting', 'number_of_followups', 'product_pitched', 'preferred_property_star', 
  'number_of_trips', 'passport', 'pitch_satisfaction_score', 'designation', 'monthly_income', 
  'customer_info', 'prod_taken']
@@ -65,7 +65,11 @@ def process_age(japanese_str):
 
 def convert_duration_of_pitch(x):
     try:
-        return  int(x[:-1])
+        if "秒" in x:
+            return  int(x[:-1])
+        if "分" in x:
+            return  int(x[:-1])*60
+        return int(x)
     except:
         return np.nan
 
@@ -148,17 +152,31 @@ def process_designation(x):
     except:
         return np.nan
 
-def process_customer_info(x):
-
-    x = x.replace("、", " ")
-    x = x.replace("/", " ")
-    x = x.replace("／", " ")
-    x = x.replace(",", " ")
-    x = x.replace("\t", " ")
-    x = x.replace("\n", " ")
-    x = x.replace("\u3000", " ")
-
-    return pd.Series(x.split(" "))
+def process_customer_info(orig):
+    try:
+        x = re.sub(r'\s+(?=\d)', '', orig) # remove any space before number
+        x = x.replace("、", " ")
+        x = x.replace("/", " ")
+        x = x.replace("／", " ")
+        x = x.replace(",", " ")
+        x = x.replace("\t", " ")
+        x = x.replace("\n", " ")
+        x = x.replace("\u3000", " ")
+        assert len(x.split(" "))==3       
+        return pd.Series(x.split(" "))
+    except:
+        x = re.sub(r'\s+', ' ', orig) # replace multiple space with one
+        x = x.replace("、", " ")
+        x = x.replace("/", " ")
+        x = x.replace("／", " ")
+        x = x.replace(",", " ")
+        x = x.replace("\t", " ")
+        x = x.replace("\n", " ")
+        x = x.replace("\u3000", " ")
+        if len(x.split(" "))==3:
+            
+            return pd.Series(x.split(" "))
+        return np.nan
 
 
 
@@ -178,26 +196,28 @@ def categorize_car_ownership(text):
     
 # Categorize based on the number of children
 def categorize_children(text):
-    if "1人" in text or "1児" in text:
-        return "1 Child"
-    elif "2人" in text or "2児" in text:
-        return "2 Children"
-    elif "3人" in text or "3児" in text:
-        return "3 Children"
-    elif "なし" in text or "無し" in text or "ゼロ" in text or "非育児家庭" in text or "無子" in text:
-        return "No Children"
-    elif "子供有り" in text:
-        return "has child"
-    else:
-        return "unknown"
- 
+    try:
+        if "1人" in text or "1児" in text:
+            return "1 Children"
+        elif "2人" in text or "2児" in text:
+            return "2 Children"
+        elif "3人" in text or "3児" in text:
+            return "3 Children"
+        elif "なし" in text or "無し" in text or "ゼロ" in text or "非育児家庭" in text or "無子" in text:
+            return "No Children"
+        else:
+            return "unknown"
+    except Exception as e:
+        return np.nan
+    
 
-def clean_data(df, drop_columns=["id", "customer_info"]):
+def clean_data(data, drop_columns=["customer_info"]):
 #     ['typeof_contact', 'city_tier', , 'occupation', 'gender', 
 #  'number_of_person_visiting', 'number_of_followups', 'product_pitched', 'preferred_property_star', 
 # , 'passport', 'pitch_satisfaction_score', 'designation', 'monthly_income', 
 #  'customer_info', 'prod_taken']
     # convert columns names to snake casing 
+    df = data.copy()
     if df.shape[1] == len(column_names):
         df.columns = column_names
     else:
@@ -211,12 +231,9 @@ def clean_data(df, drop_columns=["id", "customer_info"]):
     df['product_pitched'] = df['product_pitched'].apply(process_product_pitched)
     df['designation'] = df['designation'].apply(process_designation)
     # create three series based on customer_info column
-    splitted_customer_info = df['customer_info'].apply(process_customer_info)
-    df["marital_status"] = splitted_customer_info[0]
-    df["car_ownership"] = splitted_customer_info[1]
-    df["children"] = splitted_customer_info[2]
+    df[["marital_status", "car_ownership", "children"]] = df['customer_info'].apply(process_customer_info)
     df['marital_status'] = df['marital_status'].map(jpn_to_eng)
-    df['car_ownership'] = df['customer_info'].apply(categorize_car_ownership)
-    df['children'] = df['customer_info'].apply(categorize_children)
+    df['car_ownership'] = df['car_ownership'].apply(categorize_car_ownership)
+    df['children'] = df['children'].apply(categorize_children)
     df.drop(columns=drop_columns, inplace=True)
     return df

@@ -1,0 +1,57 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.6.9
+    cli_version: 0.15.11
+    framework: xgboost
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1723302402.179905
+    t:
+      1:
+      - 5
+      - 6
+      - 35
+      - 53
+      - 55
+      2:
+      - 5
+      - 6
+      - 35
+      - 53
+      - 55
+      3:
+      - 2
+      - 17
+      - 18
+      - 23
+      - 37
+      4: 3.6.9
+      5: 0.15.11
+      8:
+      - 5
+      13: linux-x86_64
+direction:
+  desc: null
+  value:
+  - MAXIMIZE
+n_estimators:
+  desc: null
+  value: 400
+learning_rate:
+  desc: null
+  value: 0.04325282617332957
+max_depth:
+  desc: null
+  value: 4
+subsample:
+  desc: null
+  value: 0.6782592649320195
+colsample_bytree:
+  desc: null
+  value: 0.5052408243898059
+min_child_weight:
+  desc: null
+  value: 2

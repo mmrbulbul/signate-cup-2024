@@ -1,0 +1,1 @@
+{"n_estimators": 790, "learning_rate": 0.044064261230986015, "max_depth": 2, "subsample": 0.2539515780388595, "colsample_bytree": 0.33877748210343545, "min_child_weight": 19, "value": 0.8126059902772539, "trial_number": 3, "_timestamp": 1723302456.9614902, "_runtime": 1.0602631568908691, "_step": 0, "_wandb": {"runtime": 0}}

@@ -1,0 +1,80 @@
+{
+    "os": "Linux-5.4.0-66-generic-x86_64-with-Ubuntu-18.04-bionic",
+    "python": "3.6.9",
+    "heartbeatAt": "2024-08-11T09:18:59.378265",
+    "startedAt": "2024-08-11T09:18:58.606985",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "scripts/train.py",
+    "codePathLocal": "scripts/train.py",
+    "codePath": "notebooks/scripts/train.py",
+    "git": {
+        "remote": "git@github-second:mmrbulbul/signate-cup-2024.git",
+        "commit": "9607a2a689c6ddec032c0ebf542dd38c46e5d719"
+    },
+    "email": "mmrbulbul@gmail.com",
+    "root": "/home/bulbul/Documents/competition/signate_cup_2024",
+    "host": "almexdi-UX370UAR",
+    "username": "bulbul",
+    "executable": "/home/bulbul/Documents/competition/signate_cup_2024/.venv/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 1000.062625,
+        "min": 400.0,
+        "max": 4000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1000.138,
+            "min": 400.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1000.138,
+            "min": 400.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1000.048,
+            "min": 400.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1000.04,
+            "min": 400.0,
+            "max": 4000.0
+        },
+        {
+            "current": 999.999,
+            "min": 400.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1000.049,
+            "min": 400.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1000.022,
+            "min": 400.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1000.067,
+            "min": 400.0,
+            "max": 4000.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 467.9598922729492,
+            "used": 198.0711669921875
+        }
+    },
+    "memory": {
+        "total": 15.501903533935547
+    }
+}

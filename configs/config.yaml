@@ -1,0 +1,37 @@
+general:
+  seed: 1971
+  project_name : signate-cup-2024
+
+pipeline:
+  feat_engineering:
+    use_target_encoding: True
+    use_pca: False
+    use_tsne: False 
+    use_umap: False
+    use_kmeans: False
+  
+  train:
+    cross_validation: True
+    n_splits: 5
+    cv_type: startifiedCV
+    # use_category_encoding: True
+    # use_count_encoding: True
+    # use_categorical_kfold: True
+    
+    # use_univariate_selection: False
+    # use_multivariate_selection: False
+    # use_rfe: False
+    # use_smote: False
+    # use_oversampling: False
+    # use_smoothing: False
+    # use_stacking: False
+    # use_voting: False
+    # use_model_stack: False
+    # use_model_ensemble: False
+    # use_model_weight_ensemble: False
+    # use_model_blending: False
+    # use_model_weight_blending: False
+    # use_model_stacking: False
+    # use_model_weight_stacking: False
+ 
+  

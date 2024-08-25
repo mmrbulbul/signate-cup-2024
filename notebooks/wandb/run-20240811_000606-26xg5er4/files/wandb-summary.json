@@ -1,0 +1,1 @@
+{"_wandb": {"runtime": 9}, "n_estimators": 528, "learning_rate": 0.018768615971126633, "max_depth": 1, "subsample": 0.6180301820309303, "colsample_bytree": 0.9416678672737021, "min_child_weight": 3, "value": 0.8386919827247186, "trial_number": 0, "_timestamp": 1723302377.0889888, "_runtime": 10.796470880508423, "_step": 0}
